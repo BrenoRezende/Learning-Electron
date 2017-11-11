@@ -2,10 +2,6 @@ const { ipcRenderer } = require('electron');
 
 class about {
 
-    constructor() {
-        this._aboutLink = document.querySelector('#about-link');
-    }
-
     open() {
         ipcRenderer.send('open-about-window');
     }
