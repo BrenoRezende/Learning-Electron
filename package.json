@@ -19,5 +19,6 @@
   "homepage": "https://github.com/BrenoRezende/Learning-Electron#readme",
   "dependencies": {
     "electron": "^1.7.9"
-  }
+  },
+  "devDependencies": {}
 }
