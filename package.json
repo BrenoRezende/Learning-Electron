@@ -1,0 +1,23 @@
+{
+  "name": "learning-electron",
+  "version": "1.0.0",
+  "description": "Simple project aimed at the study of electron",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrenoRezende/Learning-Electron.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrenoRezende/Learning-Electron/issues"
+  },
+  "homepage": "https://github.com/BrenoRezende/Learning-Electron#readme",
+  "dependencies": {
+    "electron": "^1.7.9"
+  }
+}
