@@ -29,12 +29,13 @@ ipcMain.on('open-about-window', () => {
         });
 
         aboutWindow.setMenu(null);
+    
+        aboutWindow.on('closed', () => {
+            aboutWindow = null;
+        });
+
     }
     
-    aboutWindow.on('closed', () => {
-        aboutWindow = null;
-    });
-
     aboutWindow.loadURL(`file://${__dirname}/app/components/about/about.html`);
 });
 
