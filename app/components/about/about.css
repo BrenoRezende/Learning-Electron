@@ -1,0 +1,10 @@
+.container {
+    position: relative;
+    text-align: center;
+}
+
+.container .link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}

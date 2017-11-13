@@ -1,8 +1,13 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, shell } = require('electron');
+const process = require('process');
 
 class about {
 
-    open() {
+    constructor() {
+        this.showVersion(document.querySelector('#electron-version'));
+    }
+
+    static open() {
         ipcRenderer.send('open-about-window');
     }
 
@@ -10,6 +15,12 @@ class about {
         ipcRenderer.send('close-about-window');
     }
 
-}
+    linkGithub() {
+        shell.openExternal('https://www.github.com/BrenoRezende');
+    }
+    
+    showVersion(elem) {
+        elem.textContent = process.versions.electron;
+    }
 
-let aboutWindow = new about();
+}

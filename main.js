@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 
 app.on('ready', () => {
-    console.log('app iniciada.');
+    console.log('App iniciada.');
     let mainWindow = new BrowserWindow({
         width: 1366,
         height: 768
@@ -18,7 +18,7 @@ let aboutWindow = null;
 
 ipcMain.on('open-about-window', () => {
 
-    if(!aboutWindow)
+    if(!aboutWindow) {
         aboutWindow = new BrowserWindow({
             width: 400,
             height: 200,
@@ -28,6 +28,9 @@ ipcMain.on('open-about-window', () => {
             resizable: false
         });
 
+        aboutWindow.setMenu(null);
+    }
+    
     aboutWindow.on('closed', () => {
         aboutWindow = null;
     });
