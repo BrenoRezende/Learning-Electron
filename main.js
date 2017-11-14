@@ -3,11 +3,11 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 app.on('ready', () => {
     console.log('App iniciada.');
     let mainWindow = new BrowserWindow({
-        width: 1366,
-        height: 768
+        width: 600,
+        height: 400
     });
 
-    mainWindow.loadURL(`file://${__dirname}/app/main.html`);
+    mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
 
 app.on('window-all-closed', () => {
@@ -16,7 +16,7 @@ app.on('window-all-closed', () => {
 
 let aboutWindow = null;
 
-ipcMain.on('open-about-window', () => {
+ipcMain.on('abrir-janela-sobre', () => {
 
     if(!aboutWindow) {
         aboutWindow = new BrowserWindow({
@@ -36,9 +36,9 @@ ipcMain.on('open-about-window', () => {
 
     }
     
-    aboutWindow.loadURL(`file://${__dirname}/app/components/about/about.html`);
+    aboutWindow.loadURL(`file://${__dirname}/app/sobre.html`);
 });
 
-ipcMain.on('close-about-window', () => {
+ipcMain.on('fechar-janela-sobre', () => {
     aboutWindow.close();
 });

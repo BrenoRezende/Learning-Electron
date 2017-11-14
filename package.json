@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/BrenoRezende/Learning-Electron#readme",
   "dependencies": {
-    "electron": "^1.7.9"
+    "electron": "^1.7.9",
+    "moment": "^2.19.2"
   },
   "devDependencies": {}
 }
