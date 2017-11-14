@@ -11,9 +11,17 @@ linkSobre.addEventListener('click' , function(){
 });
 
 let imgs = ['./img/play-button.svg', './img/stop-button.svg'];
+let playing = false;
+let timer = new Timer();
 botaoPlay.addEventListener('click', function() {
+
+    if(playing) {
+        timer.parar();
+    } else {
+        timer.iniciar(tempo);
+    }
+
+    playing = !playing;
     imgs.reverse();
-    let timer = new Timer();
-    timer.iniciar(tempo);
     botaoPlay.src = imgs[0];
 });

@@ -39,12 +39,12 @@ html, body {
 }
 
 .controles{
-    width: 25%;
+    width: 24%;
     height: 75%;
-    /*margin-bottom: 5px;*/
     display: inline-block;
     background-color: #7D94FF;
-
+    cursor: pointer;
+    float: right;
 }
 
 .botao-play{
@@ -53,6 +53,7 @@ html, body {
     margin: 0 auto;
     display: block;
 }
+
 .tempo{
     font-size: 5.5em;
     color: #FFFFFF;
