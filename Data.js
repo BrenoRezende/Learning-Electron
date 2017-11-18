@@ -4,7 +4,11 @@ const fs = require('fs');
 module.exports = class Data {
 
     salvaDados(curso, tempoEstudado) {
-        let arquivoCurso = `${__dirname}/data/${curso}.json`;
+        let caminhoCurso = `${__dirname}/data`;
+        if (!fs.existsSync(caminhoCurso))
+            fs.mkdirSync(caminhoCurso);
+
+        let arquivoCurso = `${caminhoCurso}/${curso}.json`;
         if (fs.existsSync(arquivoCurso)) {
             this._adicionaTempoAoCurso(arquivoCurso, tempoEstudado)
         } else {
