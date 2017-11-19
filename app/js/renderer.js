@@ -33,3 +33,12 @@ botaoPlay.addEventListener('click', function() {
     imgs.reverse();
     botaoPlay.src = imgs[0];
 });
+
+ipcRenderer.on('curso-trocado', (event, nomeCurso) => {
+    let data = new Data();
+    data.pegaDados(nomeCurso)
+        .then(dados => tempo.textContent = dados.tempo)
+        .catch(error => console.log(error));
+    
+    curso.textContent = nomeCurso;
+});

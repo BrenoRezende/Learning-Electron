@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron');
 const Data = require('./Data');
+const Template = require('./Template');
 
 app.on('ready', () => {
     console.log('App iniciada.');
@@ -9,14 +10,7 @@ app.on('ready', () => {
     });
 
     let tray = new Tray(`${__dirname}/app/img/icon-tray.png`);
-    const trayMenu = new Menu.buildFromTemplate([
-        { label: 'Cursos' },
-        { type: 'separator' },
-        { label:'Electron', type:'radio' },
-        { label: 'MongoDB', type: 'radio' },
-        { label: 'Nodejs', type: 'radio' },
-        { label: 'React', type: 'radio' }
-    ]);
+    const trayMenu = Menu.buildFromTemplate(new Template().geraTrayTemplate(mainWindow));
     tray.setToolTip('Escolha o curso que você está estudando no momento');
     tray.setContextMenu(trayMenu);
 

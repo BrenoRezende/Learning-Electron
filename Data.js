@@ -15,15 +15,14 @@ module.exports = class Data {
             this._adicionaTempoAoCurso(arquivoCurso, tempoEstudado)
         } else {
             this._criaArquivoDeCurso(arquivoCurso, {})
-                .then(msg => {
-                    this._adicionaTempoAoCurso(arquivoCurso, tempoEstudado);
-                })
+                .then(msg => this._adicionaTempoAoCurso(arquivoCurso, tempoEstudado))
                 .catch(error => console.log(error));
         }
     }
     
     pegaDados(curso) {
         let arquivoCurso = `${__dirname}/data/${curso}.json`;
+
         return jsonfile.readFile(arquivoCurso)
             .then(dados => dados)
             .catch(error => error);
@@ -36,8 +35,8 @@ module.exports = class Data {
         };
 
         jsonfile.writeFile(arquivoCurso, dados, {spaces: 2})
-            .then(() => console.log('Tempo salvo com sucesso.'))
-            .catch(error => console.log(error));
+            .then(() => 'Tempo salvo com sucesso.')
+            .catch(error => error);
     } 
 
     _criaArquivoDeCurso(nomeArquivo, conteudoArquivo) {
