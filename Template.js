@@ -1,3 +1,4 @@
+const process = require('process');
 
 module.exports = class Template {
 
@@ -22,4 +23,26 @@ module.exports = class Template {
 
         return menu;
     }
+
+    geraMenuPrincipal(app) {
+        let menu = [{
+            label: 'Meu menu',
+            submenu: [
+                { label: 'Item 1' },
+                { label: 'Item 2' }
+            ]
+        }];
+
+        if (process.platform == 'darwin') {
+            menu.unshift({
+                label: app.getName(),
+                submenu: [
+                    { label: 'Estou rodando no Mac!' }
+                ]
+            });
+        }
+
+        return menu;
+    }
+    
 }

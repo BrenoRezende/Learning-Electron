@@ -16,6 +16,8 @@ app.on('ready', () => {
     tray.setToolTip('Escolha o curso que você está estudando no momento');
     tray.setContextMenu(trayMenu);
 
+    Menu.setApplicationMenu(Menu.buildFromTemplate(new Template().geraMenuPrincipal(app)));
+
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
 

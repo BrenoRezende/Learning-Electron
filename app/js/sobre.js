@@ -1,5 +1,5 @@
 const { ipcRenderer, shell } = require('electron');
-    const process = require('process');
+const process = require('process');
 
 let linkFechar = document.querySelector("#link-fechar");
 let linkGithub = document.querySelector("#link-github");
