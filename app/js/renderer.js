@@ -2,10 +2,13 @@ const { ipcRenderer } = require('electron');
 const Timer = require('./Timer');
 const Data = require('../../Data');
 
-let linkSobre = document.querySelector('#link-sobre');
-let botaoPlay = document.querySelector('.botao-play');
-let tempo = document.querySelector('.tempo');
-let curso = document.querySelector('.curso');
+let $ = document.querySelector.bind(document);
+let linkSobre = $('#link-sobre');
+let botaoPlay = $('.botao-play');
+let tempo = $('.tempo');
+let curso = $('.curso');
+let botaoAdicionarCurso = $('.botao-adicionar');
+let campoAdicionarCurso = $('.campo-adicionar');
 
 window.onload = () => {
     let data = new Data();
@@ -41,4 +44,13 @@ ipcRenderer.on('curso-trocado', (event, nomeCurso) => {
         .catch(error => console.log(error));
     
     curso.textContent = nomeCurso;
+});
+
+botaoAdicionarCurso.addEventListener('click', () => {
+    let novoCurso = campoAdicionarCurso.value;
+    curso.textContent = novoCurso;
+    tempo.textContent = '00:00:00';
+    campoAdicionarCurso.value = '';
+
+    ipcRenderer.send('curso-adicionado', novoCurso);
 });

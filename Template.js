@@ -13,4 +13,13 @@ module.exports = class Template {
 
         return menu;
     }
+
+    adicionaNovoCurso(window, curso) {
+        let menu = this.geraTrayTemplate(window);
+        menu.push({
+            label: curso, type: 'radio', checked: true, click: () => { window.send('curso-trocado', curso) }
+        });
+
+        return menu;
+    }
 }
