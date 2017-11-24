@@ -28,8 +28,16 @@ botaoPlay.addEventListener('click', function() {
 
     if(playing) {
         timer.parar(curso.textContent);
+        new Notification('Timer', {
+            body: `O curso ${curso.textContent} foi parado!`,
+            icon: './img/stop-button.png'
+        });
     } else {
         timer.iniciar(tempo);
+        new Notification('Timer', {
+            body: `O curso ${curso.textContent} foi inciado!`,
+            icon: './img/play-button.png'
+        });
     }
 
     playing = !playing;
@@ -53,4 +61,8 @@ botaoAdicionarCurso.addEventListener('click', () => {
     campoAdicionarCurso.value = '';
 
     ipcRenderer.send('curso-adicionado', novoCurso);
+});
+
+ipcRenderer.on('iniciar-ou-parar-app', () => {
+    botaoPlay.click();
 });

@@ -37,7 +37,11 @@ module.exports = class Template {
             {
                 label: 'About',
                 submenu: [
-                    { label: 'About Timer', click: () => { ipcMain.emit('abrir-janela-sobre') } }
+                    { 
+                        label: 'About Timer', 
+                        click: () => { ipcMain.emit('abrir-janela-sobre') },
+                        accelerator: 'CommandOrControl+A'
+                    }
                 ]
             }
         ];
