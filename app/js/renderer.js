@@ -55,6 +55,10 @@ ipcRenderer.on('curso-trocado', (event, nomeCurso) => {
 });
 
 botaoAdicionarCurso.addEventListener('click', () => {
+
+    if(campoAdicionarCurso.value == '') 
+        return;
+
     let novoCurso = campoAdicionarCurso.value;
     curso.textContent = novoCurso;
     tempo.textContent = '00:00:00';
