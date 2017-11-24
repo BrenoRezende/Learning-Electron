@@ -7,17 +7,18 @@ let tray = null;
 app.on('ready', () => {
     console.log('App iniciada.');
     mainWindow = new BrowserWindow({
-        width: 600,
-        height: 400
+        width: 800,
+        height: 450
     });
 
     tray = new Tray(`${__dirname}/app/img/icon-tray.png`);
-    const trayMenu = Menu.buildFromTemplate(new Template().geraTrayTemplate(mainWindow));
+    const trayMenu = Menu.buildFromTemplate(Template.geraTrayTemplate(mainWindow));
     tray.setToolTip('Escolha o curso que você está estudando no momento');
     tray.setContextMenu(trayMenu);
 
-    Menu.setApplicationMenu(Menu.buildFromTemplate(new Template().geraMenuPrincipal(app)));
+    Menu.setApplicationMenu(Menu.buildFromTemplate(Template.geraMenuPrincipal(app)));
 
+    mainWindow.openDevTools();
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
 
@@ -61,7 +62,7 @@ ipcMain.on('curso-parado', (event, curso, tempoEstudado) => {
 });
 
 ipcMain.on('curso-adicionado', (event, novoCurso) => {
-    const trayMenu = Menu.buildFromTemplate(new Template().adicionaNovoCurso(mainWindow, novoCurso));
+    const trayMenu = Menu.buildFromTemplate(Template.adicionaNovoCurso(mainWindow, novoCurso));
     tray.setToolTip('Escolha o curso que você está estudando no momento');
     tray.setContextMenu(trayMenu);
 });

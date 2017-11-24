@@ -1,8 +1,9 @@
 const process = require('process');
+const { ipcMain } = require('electron');
 
 module.exports = class Template {
 
-    geraTrayTemplate(window) {
+    static geraTrayTemplate(window) {
         let menu = [
             { label: 'Cursos' },
             { type: 'separator' },
@@ -15,7 +16,7 @@ module.exports = class Template {
         return menu;
     }
 
-    adicionaNovoCurso(window, curso) {
+    static adicionaNovoCurso(window, curso) {
         let menu = this.geraTrayTemplate(window);
         menu.push({
             label: curso, type: 'radio', checked: true, click: () => { window.send('curso-trocado', curso) }
@@ -24,20 +25,36 @@ module.exports = class Template {
         return menu;
     }
 
-    geraMenuPrincipal(app) {
-        let menu = [{
-            label: 'Meu menu',
-            submenu: [
-                { label: 'Item 1' },
-                { label: 'Item 2' }
-            ]
-        }];
+    static geraMenuPrincipal(app) {
+        let menu = [
+            {
+                role: 'window',
+                submenu: [
+                    { role: 'minimize' },
+                    { role: 'close' }
+                ]
+            },
+            {
+                label: 'About',
+                submenu: [
+                    { label: 'About Timer', click: () => { ipcMain.emit('abrir-janela-sobre') } }
+                ]
+            }
+        ];
 
         if (process.platform == 'darwin') {
             menu.unshift({
                 label: app.getName(),
                 submenu: [
-                    { label: 'Estou rodando no Mac!' }
+                    { label: 'About Timer', click: () => { ipcMain.emit('abrir-janela-sobre') } },
+                    { type: 'separator' },
+                    { role: 'services', submenu: [] },
+                    { type: 'separator' },
+                    { role: 'hide' },
+                    { role: 'hideothers' },
+                    { role: 'unhide' },
+                    { type: 'separator' },
+                    { role: 'quit' }
                 ]
             });
         }
